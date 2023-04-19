@@ -21,7 +21,7 @@ public class PostEditar extends HttpServlet {
 		servicio.editarRegistro(request);
 
 		request.setAttribute("listaCalificaciones", servicio.listaCalificaciones(request));
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("inicio.jsp").forward(request, response);
 		
 	}
 

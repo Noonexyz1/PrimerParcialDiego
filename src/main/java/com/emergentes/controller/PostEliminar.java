@@ -23,7 +23,7 @@ public class PostEliminar extends HttpServlet {
     	InterfaceServicio servicio = new Servicio();
         
         request.setAttribute("listaCalificaciones", servicio.listaCalificaciones(request));
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("inicio.jsp").forward(request, response);
     	//request.getRequestDispatcher("/").forward(request, response);
         
     }
