@@ -28,6 +28,9 @@
 	if (persona != null) {
 	%>
 		<p>
+                        <p>id del sergidor que asigna el valor de id unico para la sesion: <%=sessionEstablecida.getId()%> </p>
+                        <br>
+                    
 			<%=persona.getId()%>
 			<br>
 			<%=persona.getNombre()%>
