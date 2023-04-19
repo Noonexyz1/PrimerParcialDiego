@@ -43,13 +43,22 @@ public class Servicio implements InterfaceServicio {
         notaFinal = Integer.parseInt(request.getParameter("parcialTres"));
         notaF = nota1 + nota2 + notaFinal;
 
-        cal.setP1(nota1);
-        cal.setP2(nota2);
-        cal.setEf(notaFinal);
+        //validacion numeros menores o iguales a 30
+        if ((nota1 <= 30) && (nota2 <= 30) && (notaFinal <= 40)) {
+            cal.setP1(nota1);
+            cal.setP2(nota2);
+            cal.setEf(notaFinal);
 
-        cal.setNota(notaF);
+            cal.setNota(notaF);
 
-        listaCalificacionesDatos.getCalificacionesData().add(cal);
+            listaCalificacionesDatos.getCalificacionesData().add(cal);
+        } 
+        
+        //si no cumple esa condicion, entonces simplemente lo redirige pero sin los datos
+        
+        
+        
+        
 
     }
 
@@ -90,16 +99,25 @@ public class Servicio implements InterfaceServicio {
         notaFinal = Integer.parseInt(request.getParameter("parcialTres"));
         notaF = nota1 + nota2 + notaFinal;
 
-        cal.setP1(nota1);
-        cal.setP2(nota2);
-        cal.setEf(notaFinal);
+        
+        //validacion numeros menores o iguales a 30
+        if ((nota1 <= 30) && (nota2 <= 30) && (notaFinal <= 40)) {
 
-        cal.setNota(notaF);
+            cal.setP1(nota1);
+            cal.setP2(nota2);
+            cal.setEf(notaFinal);
 
-        List<Calificacion> lista = new ListaCalificacionesDatos().getCalificacionesData();
-        int indice = lista.indexOf(buscarRegistro(Integer.parseInt(request.getParameter("id"))));
+            cal.setNota(notaF);
 
-        lista.set(indice, cal);
+            List<Calificacion> lista = new ListaCalificacionesDatos().getCalificacionesData();
+            int indice = lista.indexOf(buscarRegistro(Integer.parseInt(request.getParameter("id"))));
+
+            lista.set(indice, cal);
+
+        }
+        
+        //si no cumple esa condicion, entonces simplemente lo redirige pero sin los datos
+        
 
     }
 
