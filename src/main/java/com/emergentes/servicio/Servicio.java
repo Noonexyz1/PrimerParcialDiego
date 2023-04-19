@@ -146,7 +146,7 @@ public class Servicio implements InterfaceServicio {
 		if (b == true) {
 			SessionPersona persona = new SessionPersona();
 			persona.setId(100);
-			persona.setNombre("Carlos");
+			persona.setNombre("Diego");
 			persona.setNavegador("Firefox");
 			
 			HttpSession session = request.getSession();
