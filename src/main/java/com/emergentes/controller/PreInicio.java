@@ -28,7 +28,7 @@ public class PreInicio extends HttpServlet {
         navegador y le asignará un ID de sesión diferente. Por lo tanto, la información almacenada en la sesión de HttpSession no se compartirá entre 
         diferentes navegadores o dispositivos.
          */
-        servicio.evaluarSesionActiva(request);
+        servicio.evaluarSesionActivaServicio(request);
 
         
         List<Calificacion> lista = servicio.listaCalificaciones(request);

@@ -19,7 +19,7 @@ public class PostNuevo extends HttpServlet {
             throws ServletException, IOException {
         
         InterfaceServicio servicio = new Servicio();
-        servicio.nuevoRegistro(request);
+        servicio.nuevoRegistroServicio(request);
         
         //no tengo un metodo que me permita pasar listas  a otro objeto
         //request.setAttribute("listaCalificaciones", servicio.listaCalificaciones(request));

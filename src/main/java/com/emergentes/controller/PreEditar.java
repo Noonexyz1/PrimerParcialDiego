@@ -18,7 +18,7 @@ public class PreEditar extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		InterfaceServicio servicio = new Servicio();
 		
-		request.setAttribute("calificacion", servicio.buscarRegistro(Integer.parseInt(request.getParameter("id"))));
+		request.setAttribute("calificacion", servicio.buscarRegistroServicio(Integer.parseInt(request.getParameter("id"))));
 		request.getRequestDispatcher("editar.jsp").forward(request, response);
 	}
 

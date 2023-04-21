@@ -18,7 +18,7 @@ public class PreEliminar extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         InterfaceServicio servicio = new Servicio();
-        servicio.eliminarRegistro(request);
+        servicio.eliminarRegistroServicio(request);
         
         //request.setAttribute("listaCalificaciones", servicio.listaCalificaciones());
         request.getRequestDispatcher("PostEliminar").forward(request, response);

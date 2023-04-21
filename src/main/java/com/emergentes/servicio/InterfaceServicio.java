@@ -7,14 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface InterfaceServicio {
     public List<Calificacion> listaCalificaciones(HttpServletRequest request);
-    public void nuevoRegistro(HttpServletRequest request);
-    public Calificacion buscarRegistro(int id);
-    public void eliminarRegistro(HttpServletRequest request);
-    public void editarRegistro(HttpServletRequest request);
+    
+    //para los Registros
+    public void nuevoRegistroServicio(HttpServletRequest request);
+    public Calificacion buscarRegistroServicio(int id);
+    public void eliminarRegistroServicio(HttpServletRequest request);
+    public void editarRegistroServicio(HttpServletRequest request);
     
     //para las Sesiones
-    public boolean isSessionReady(HttpServletRequest request);
-    public void evaluarSesionActiva(HttpServletRequest request);
-    public void establecerSesion(boolean is, HttpServletRequest request);
+    public boolean isSessionReadyServicio(HttpServletRequest request);
+    public void evaluarSesionActivaServicio(HttpServletRequest request);
+    public void establecerSesionServicio(boolean is, HttpServletRequest request);
     
 }

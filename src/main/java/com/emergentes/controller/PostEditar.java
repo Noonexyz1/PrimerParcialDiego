@@ -18,7 +18,7 @@ public class PostEditar extends HttpServlet {
 		
 		InterfaceServicio servicio = new Servicio();
 		
-		servicio.editarRegistro(request);
+		servicio.editarRegistroServicio(request);
 
 		request.setAttribute("listaCalificaciones", servicio.listaCalificaciones(request));
 		request.getRequestDispatcher("inicio.jsp").forward(request, response);
