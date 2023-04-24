@@ -45,7 +45,6 @@
 
 
 
-
 	<h1>Registro de calificaciones</h1>
 
         <a href="PreNuevo">NUEVO</a>
