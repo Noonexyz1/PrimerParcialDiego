@@ -5,6 +5,11 @@ import com.emergentes.modelo.Calificacion;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+//con I (Segregacion de interfaces) =)
+//pero en los controllers deberia hacer Liskov para cada interfaceq que haga falta
+//y para no joder mas el codigo, lo que hice es heredar todas esas interfaces a una sola
+//llamada IServicio
+//public class Servicio implements ICalificaciones, IRegistro, ISesion {
 public class Servicio implements IServicio {
 
     @Override
