@@ -1,5 +1,6 @@
 package com.emergentes.controller;
 
+import com.emergentes.datos.ListaCalificacionesDatos;
 import com.emergentes.modelo.Calificacion;
 import com.emergentes.servicio.Servicio;
 import java.io.IOException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.emergentes.servicio.IServicio;
+import com.emergentes.servicio.RegistroManager;
+import com.emergentes.servicio.SesionManager;
 
 @WebServlet(name = "PreInicio", urlPatterns = {"/"})
 public class PreInicio extends HttpServlet {
@@ -19,7 +22,23 @@ public class PreInicio extends HttpServlet {
             throws ServletException, IOException {
 
         //Le puse Liskov sin saber que era liskov jajaja
-        IServicio servicio = new Servicio();
+        //IServicio servicio = new Servicio();
+        
+        //Injeccion de Dependencias
+        //al hacer esto, algunos metodos no seran necesitados, asi que estaria injectando dependencias inecesarias
+        //para arreglar ello, o bien lo establesco con sett o no hize bien la I de segregacion de interfaz (CREO QUE NO)
+        //para ello, en la clase interface IServicio reemplazar por: public class Servicio implements ICalificaciones, IRegistro, ISesion { (CREO QUE NO)
+        //o tambien, crear varios constructores que por parametro solo me mande una dependencia que nesecite, sobrecarga de constructor
+        
+        IServicio servicio = new Servicio(
+                new ListaCalificacionesDatos(),
+                new RegistroManager(),
+                new SesionManager()
+        );
+        
+        
+        //IServicio servicio2 = new Servicio(new ListaCalificacionesDatos()); necesito en SesionManager si o si
+
         //añadimos una session object y está presente en todo el programa
         /*
         Cada navegador crea su propio conjunto de cookies, y por lo tanto cada uno tendrá su propia sesión de HttpSession independiente en el servidor.
@@ -29,8 +48,10 @@ public class PreInicio extends HttpServlet {
         navegador y le asignará un ID de sesión diferente. Por lo tanto, la información almacenada en la sesión de HttpSession no se compartirá entre 
         diferentes navegadores o dispositivos.
          */
+        
         servicio.evaluarSesionActivaServicio(request);
-
+        //servicio2.evaluarSesionActivaServicio(request); ESTO ES LO QUE NECESITO necesito en SesionManager si o si
+        //asi que este codigo anterior necesita dos dependencias de la cual solo envie una, eso me daba error, puedo arreglarlo de varias formas jaja =)
         
         List<Calificacion> lista = servicio.listaCalificaciones(request);
 
@@ -38,7 +59,7 @@ public class PreInicio extends HttpServlet {
         //ME PARACE QUE TODO ESTA YENDO AL INDEX!!!!!!!!!
         request.getRequestDispatcher("inicio.jsp").forward(request, response);
         //request.getRequestDispatcher("/PostInicio").forward(request, response);
-        
+
         /*
 	 * NOTA MUY IMPORTANTE
 	 * Cuando se tiene un servlet con / en la anotacion de la cabeza de la clase,
@@ -59,8 +80,6 @@ public class PreInicio extends HttpServlet {
 	 * Hay una forma de establecer un /nombre como principal con el descriptor
 	 * 
 	* */
-        
-
     }
 
 }
