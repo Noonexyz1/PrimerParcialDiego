@@ -5,7 +5,7 @@ import com.emergentes.modelo.Calificacion;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-public class Servicio implements InterfaceServicio {
+public class Servicio implements IServicio {
 
     @Override
     public List<Calificacion> listaCalificaciones(HttpServletRequest request) {
@@ -16,7 +16,6 @@ public class Servicio implements InterfaceServicio {
             return new ListaCalificacionesDatos().getCalificacionesData();
 
         } else {
-
             return (List<Calificacion>) request.getAttribute("listaCalificaciones");
 
         }
@@ -25,45 +24,49 @@ public class Servicio implements InterfaceServicio {
 
     @Override
     public void nuevoRegistroServicio(HttpServletRequest request) {
-        RegistroManager manager = new RegistroManager();
+        //Sin Liskov
+        //RegistroManager manager = new RegistroManager();
+        //manager.nuevoRegistro(request);
+        
+        //Con Liskov
+        IRegistroManager manager = new RegistroManager();
         manager.nuevoRegistro(request);
     }
     
     @Override
     public Calificacion buscarRegistroServicio(int id) {
-        RegistroManager manager = new RegistroManager();
+        IRegistroManager manager = new RegistroManager();
         return manager.buscarRegistro(id);
     }
 
     @Override
     public void eliminarRegistroServicio(HttpServletRequest request) {
-         RegistroManager manager = new RegistroManager();
+         IRegistroManager manager = new RegistroManager();
          manager.eliminarRegistro(request);
     }
 
     @Override
     public void editarRegistroServicio(HttpServletRequest request) {
-         RegistroManager manager = new RegistroManager();
+         IRegistroManager manager = new RegistroManager();
          manager.editarRegistro(request);
     }
 
     
-    
     @Override
     public void evaluarSesionActivaServicio(HttpServletRequest request) {
-        SesionManager sesion = new SesionManager();
+        ISesionManager sesion = new SesionManager();
         sesion.evaluarSesionActiva(request);
     }
 
     @Override
     public boolean isSessionReadyServicio(HttpServletRequest request) {
-       SesionManager sesion = new SesionManager();
+       ISesionManager sesion = new SesionManager();
        return sesion.isSessionReady(request);
     }
 
     @Override
     public void establecerSesionServicio(boolean b, HttpServletRequest request) {
-        SesionManager sesion = new SesionManager();
+        ISesionManager sesion = new SesionManager();
         sesion.establecerSesion(b, request);
     }
     

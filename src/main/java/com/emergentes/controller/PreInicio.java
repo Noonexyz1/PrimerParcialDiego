@@ -1,7 +1,6 @@
 package com.emergentes.controller;
 
 import com.emergentes.modelo.Calificacion;
-import com.emergentes.servicio.InterfaceServicio;
 import com.emergentes.servicio.Servicio;
 import java.io.IOException;
 import java.util.List;
@@ -10,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.emergentes.servicio.IServicio;
 
 @WebServlet(name = "PreInicio", urlPatterns = {"/"})
 public class PreInicio extends HttpServlet {
@@ -18,7 +18,8 @@ public class PreInicio extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        InterfaceServicio servicio = new Servicio();
+        //Le puse Liskov sin saber que era liskov jajaja
+        IServicio servicio = new Servicio();
         //añadimos una session object y está presente en todo el programa
         /*
         Cada navegador crea su propio conjunto de cookies, y por lo tanto cada uno tendrá su propia sesión de HttpSession independiente en el servidor.

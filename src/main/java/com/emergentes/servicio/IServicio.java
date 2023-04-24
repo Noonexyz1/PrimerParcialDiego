@@ -5,7 +5,8 @@ import com.emergentes.modelo.Calificacion;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-public interface InterfaceServicio {
+public interface IServicio {
+    
     public List<Calificacion> listaCalificaciones(HttpServletRequest request);
     
     //para los Registros
