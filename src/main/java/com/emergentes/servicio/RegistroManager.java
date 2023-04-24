@@ -1,4 +1,3 @@
-
 package com.emergentes.servicio;
 
 import com.emergentes.datos.ListaCalificacionesDatos;
@@ -6,9 +5,9 @@ import com.emergentes.modelo.Calificacion;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-public class RegistroManager {
+public class RegistroManager implements IRegistroManager {
 
- 
+    @Override
     public void nuevoRegistro(HttpServletRequest request) {
 
         ListaCalificacionesDatos listaCalificacionesDatos = new ListaCalificacionesDatos();
@@ -35,13 +34,12 @@ public class RegistroManager {
             cal.setNota(notaF);
 
             listaCalificacionesDatos.getCalificacionesData().add(cal);
-        } 
-        
-        //si no cumple esa condicion, entonces simplemente lo redirige pero sin los datos
-    
-    }
-    
+        }
 
+        //si no cumple esa condicion, entonces simplemente lo redirige pero sin los datos
+    }
+
+    @Override
     public Calificacion buscarRegistro(int id) {
         Calificacion cal = null;
 
@@ -57,7 +55,7 @@ public class RegistroManager {
 
     }
 
-
+    @Override
     public void eliminarRegistro(HttpServletRequest request) {
         //buscar el registro con el id
         //buscarRegistro(Integer.parseInt(request.getParameter("id")));
@@ -66,7 +64,7 @@ public class RegistroManager {
 
     }
 
-  
+    @Override
     public void editarRegistro(HttpServletRequest request) {
         Calificacion cal = new Calificacion();
         cal.setId(Integer.parseInt(request.getParameter("id")));
@@ -78,7 +76,6 @@ public class RegistroManager {
         notaFinal = Integer.parseInt(request.getParameter("parcialTres"));
         notaF = nota1 + nota2 + notaFinal;
 
-        
         //validacion numeros menores o iguales a 30
         if ((nota1 <= 30) && (nota2 <= 30) && (notaFinal <= 40)) {
 
@@ -94,9 +91,8 @@ public class RegistroManager {
             lista.set(indice, cal);
 
         }
-        
+
         //si no cumple esa condicion, entonces simplemente lo redirige pero sin los datos
-        
     }
-    
+
 }
